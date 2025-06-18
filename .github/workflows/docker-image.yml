@@ -12,9 +12,10 @@ jobs:
 
   build:
 
-    runs-on: self-hosted #ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Check out code repository
+      uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build -t hello-world-nginx:v1 .
