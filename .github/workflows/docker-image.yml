@@ -18,6 +18,7 @@ jobs:
     - name: Check out code repository
       uses: actions/checkout@v4
     - name: bypass the ...
+      shell: pwsh
       run: powershell -ExecutionPolicy Bypass -File your-script.ps1
     - name: Build the Docker image
       run: docker build -t hello-world-nginx:v1 .
