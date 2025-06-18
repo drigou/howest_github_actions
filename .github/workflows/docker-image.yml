@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Check out code repository
       uses: actions/checkout@v4
+    - name: check something out
+      run: Get-ExecutionPolicy -List
     - name: bypass the ...
       shell: powershell
       run: powershell -ExecutionPolicy Bypass -File your-script.ps1
