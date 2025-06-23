@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ghcr.io/${{vars.GHCR_USERNAME}}/hello-world-nginx
+  IMAGE_NAME: ${{vars.USERNAME}}/hello-world-nginx
   IMAGE_TAG: v1
 
 jobs:
