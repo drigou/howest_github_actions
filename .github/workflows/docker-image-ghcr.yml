@@ -19,5 +19,5 @@ jobs:
       - name: Build and publish a Docker image for ${{ github.repository }}
         uses: macbre/push-to-ghcr@master
         with:
-          image_name: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}  # it will be lowercased internally
+          image_name: ${{ env.IMAGE_NAME }}  # it will be lowercased internally
           github_token: ${{ secrets.PAT_TOKEN }}
