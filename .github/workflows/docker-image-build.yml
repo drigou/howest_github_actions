@@ -6,7 +6,7 @@ on:
 
 env:
   USER: ${{ vars.DOCKER_USERNAME }}
-  TAG: ${{ github.ref_name }}-${{ github.sha.substr(0, 7) }}
+  TAG: ${{ github.ref_name }}-${{ github.sha }}
 
 jobs:
   docker:
