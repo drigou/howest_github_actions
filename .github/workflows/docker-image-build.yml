@@ -4,6 +4,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  USER: ${{ DOCKER_USERNAME }}
+  TAG: ${{ github.ref_name }}-${{ github.sha::7 }}
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -26,4 +30,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: drgou/hello-world-nginx:v1
+          tags: ${{ env.USER }}/hello-world-nginx:${{ env.TAG }}
