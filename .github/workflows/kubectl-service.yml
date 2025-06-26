@@ -17,14 +17,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up kubeconfig
-        shell: cmd
+        shell: powershell
         run: |
-          echo %KUBECONFIG_DATA% > %USERPROFILE%\kubeconfig
+            $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
+            Set-Content -Path $kubeconfigPath -Value '${{ secrets.KUBECONFIG_DATA }}'
 
       - name: Test cluster access
-        shell: cmd
+        shell: powershell
         run: |
-          kubectl --kubeconfig=%USERPROFILE%\kubeconfig get nodes
+            $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
+            kubectl --kubeconfig=$kubeconfigPath get nodes
 
       - name: Do some checks
         run: |
