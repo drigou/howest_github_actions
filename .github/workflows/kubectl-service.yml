@@ -19,8 +19,10 @@ jobs:
       - name: print current working directory
         shell: powershell
         run: |
-            pwd
-            ls
+            Write-Host "Current directory:"
+            Get-Location
+            Write-Host "Files in directory:"
+            Get-ChildItem -Recurse
 
       - name: Set up kubeconfig
         shell: powershell
