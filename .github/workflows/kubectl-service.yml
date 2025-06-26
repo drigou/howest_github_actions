@@ -18,7 +18,9 @@ jobs:
 
       - name: print current working directory
         shell: powershell
-        run: pwd
+        run: |
+            pwd
+            ls
 
       - name: Set up kubeconfig
         shell: powershell
