@@ -22,7 +22,7 @@ jobs:
             Write-Host "Current directory:"
             pwd
             Write-Host "Files in directory:"
-            Get-ChildItem -Recurse
+            Get-ChildItem -Recurse -Directory
 
       - name: Set up kubeconfig
         shell: powershell
