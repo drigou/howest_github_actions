@@ -35,7 +35,8 @@ jobs:
             kubectl --kubeconfig=$kubeconfigPath get nodes
 
       - name: Create a kubernetes pod
-        run: kubectl --kubeconfig=$kubeconfigPath apply -f ./kubernetes/resource.yaml --validate=false
+        shell: powershell
+        run: kubectl --kubeconfig=$kubeconfigPath apply -f ~/kubernetes/resource.yaml
           
 
 
