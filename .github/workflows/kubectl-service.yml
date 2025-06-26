@@ -18,6 +18,7 @@ jobs:
 
       - name: Do some checks
         run: |
+             cat ~/.kube/config
              echo "Check api resource for kubectl"
              kubectl --kubeconfig ~/.kube/config api-resources
              echo "Check versions of kubectl (client)"
