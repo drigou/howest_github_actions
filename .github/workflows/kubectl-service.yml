@@ -56,7 +56,9 @@ jobs:
 
       - name: Create a kubernetes pod
         shell: powershell
-        run: kubectl --kubeconfig=$kubeconfigPath apply -f .\kubernetes\resource.yaml
+        run: |
+            $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
+            kubectl --kubeconfig=$kubeconfigPath apply -f .\kubernetes\resource.yaml
           
 
 
