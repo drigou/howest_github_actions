@@ -40,7 +40,7 @@ jobs:
         shell: powershell
         run: |
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
-            kubectl --kubeconfig=$kubeconfigPath get nodes
+            kubectl --kubeconfig="$Env:USERPROFILE\kubeconfig" get pods -A
 
       - name: Create a kubernetes pod
         shell: powershell
