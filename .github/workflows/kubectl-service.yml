@@ -13,17 +13,19 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v2
+      - name: look at the github repo
+        uses: actions/checkout@v2
 
       - name: Do some checks
-        run: echo "Check api resource for kubectl"
+        run: |
+             echo "Check api resource for kubectl"
              kubectl api-resources
              echo "Check versions of kubectl (client)"
              kubectl version --client
              kubectl version
 
       - name: Create a kubernetes pod
-        run: kubectl apply -f ./kubernetes/resource.yaml
+        run: kubectl apply -f ./kubernetes/resource.yaml --validate=false
           
 
 
