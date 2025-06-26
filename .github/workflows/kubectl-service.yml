@@ -16,6 +16,13 @@ jobs:
       - name: look at the github repo
         uses: actions/checkout@v2
 
+      - name: Set kubeconfig
+        run: |
+          echo "${{ secrets.KUBECONFIG_DATA }}" > $HOME/kubeconfig
+          echo $HOME/kubeconfig
+
+        shell: bash
+
       - name: Do some checks
         run: |
              cat c/users/dries/.kube/config
