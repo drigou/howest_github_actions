@@ -16,6 +16,10 @@ jobs:
       - name: look at the github repo
         uses: actions/checkout@v2
 
+      - name: print current working directory
+        shell: powershell
+        run: pwd
+
       - name: Set up kubeconfig
         shell: powershell
         run: |
