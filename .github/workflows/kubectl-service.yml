@@ -36,6 +36,12 @@ jobs:
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             kubectl --kubeconfig=$kubeconfigPath cluster-info
 
+      - name: Check versions
+        shell: powershell
+        run: |
+            $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
+            kubectl --kubeconfig=$kubeconfigPath version
+
       - name: Test cluster access
         shell: powershell
         run: |
