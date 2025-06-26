@@ -28,17 +28,8 @@ jobs:
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             kubectl --kubeconfig=$kubeconfigPath get nodes
 
-      - name: Do some checks
-        run: |
-             cat c/users/dries/.kube/config
-             echo "Check api resource for kubectl"
-             kubectl --kubeconfig ~/.kube/config api-resources
-             echo "Check versions of kubectl (client)"
-             kubectl --kubeconfig ~/.kube/config version --client
-             kubectl --kubeconfig ~/.kube/config version
-
       - name: Create a kubernetes pod
-        run: kubectl apply -f ./kubernetes/resource.yaml --validate=false
+        run: kubectl --kubeconfig=$kubeconfigPath apply -f ./kubernetes/resource.yaml --validate=false
           
 
 
