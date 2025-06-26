@@ -44,7 +44,7 @@ jobs:
 
       - name: Create a kubernetes pod
         shell: powershell
-        run: kubectl --kubeconfig=$kubeconfigPath apply -f C:\actions-runner\_work\howest_github_actions\howest_github_actions\kubernetes
+        run: kubectl --kubeconfig=$kubeconfigPath apply -f C:\actions-runner\_work\howest_github_actions\howest_github_actions\kubernetes\resource.yaml
           
 
 
