@@ -17,11 +17,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set kubeconfig
+        shell: pwsh
         run: |
-          echo "${{ secrets.KUBECONFIG_DATA }}" > $HOME/kubeconfig
-          echo $HOME/kubeconfig
+          $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
+          [System.IO.File]::WriteAllText($kubeconfigPath, "${{ secrets.KUBECONFIG_DATA }}")
 
-        shell: bash
+      - name: Test cluster access
+        shell: pwsh
+        run: |
+          $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
+          kubectl --kubeconfig=$kubeconfigPath get nodes
 
       - name: Do some checks
         run: |
