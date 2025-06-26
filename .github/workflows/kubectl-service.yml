@@ -20,7 +20,7 @@ jobs:
         shell: powershell
         run: |
             Write-Host "Current directory:"
-            Get-Location
+            pwd
             Write-Host "Files in directory:"
             Get-ChildItem -Recurse
 
@@ -29,6 +29,12 @@ jobs:
         run: |
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             Set-Content -Path $kubeconfigPath -Value '${{ secrets.KUBECONFIG_DATA }}'
+
+      - name: Test cluster connectivity
+        shell: powershell
+        run: |
+            $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
+            kubectl --kubeconfig=$kubeconfigPath cluster-info
 
       - name: Test cluster access
         shell: powershell
