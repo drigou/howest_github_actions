@@ -1,0 +1,22 @@
+name: kubernetes-pod
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  create_pod:
+    runs-on: self-hosted
+
+    steps:
+      - name: look at the github repo
+        uses: actions/checkout@v2
+
+      - name: Create a docker image 
+        shell: powershell
+        run: | 
+            docker build -t drgou/nginx-hello-world:latest .
+            docker image list | Select-String hello-world-nginx

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mypod-{ID} # Try to make this dynamically generated (random)
+  name: mypod-{} # Try to make this dynamically generated (random)
   namespace: howest-github-actions # Enter your namespace here
   labels:
     name: mypod
