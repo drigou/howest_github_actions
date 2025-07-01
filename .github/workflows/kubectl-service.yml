@@ -34,11 +34,18 @@ jobs:
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             kubectl --kubeconfig="$Env:USERPROFILE\kubeconfig" get pods -A --namespace howest-github-actions
 
+      - name: Generate random ID and update manifest
+        run: |
+          $id = [guid]::NewGuid().ToString().Substring(0, 32)
+          Write-Host "Generated ID: $id"
+          (Get-Content ./kubernetes/resource.yaml) -replace '\{ID\}', $id | Set-Content ./kubernetes/resource_newid.yaml
+        shell: powershell
+
       - name: Create a kubernetes pod
         shell: powershell
         run: |
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
-            kubectl --kubeconfig=$kubeconfigPath apply -f .\kubernetes\resource.yaml
+            kubectl --kubeconfig=$kubeconfigPath apply -f .\kubernetes\resource_newid.yaml
           
 
 
