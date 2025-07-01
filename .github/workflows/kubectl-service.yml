@@ -22,18 +22,22 @@ jobs:
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             Set-Content -Path $kubeconfigPath -Value '${{ secrets.KUBECONFIG_DATA }}'
 
+        # Test cluster connection
       - name: Test cluster connectivity
         shell: powershell
         run: |
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             kubectl --kubeconfig=$kubeconfigPath cluster-info
 
+        # Test cluster access on the self-hosted runner
       - name: Test cluster access
         shell: powershell
         run: |
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             kubectl --kubeconfig="$Env:USERPROFILE\kubeconfig" get pods -A --namespace howest-github-actions
-
+        
+        # Create a new guid of 32 characters. Write to variable $id
+        # Open up file and replace {ID} with the $id value. Save the new content in a new file.  
       - name: Generate random ID and update manifest
         run: |
           $id = [guid]::NewGuid().ToString().Substring(0, 32)
@@ -41,6 +45,7 @@ jobs:
           (Get-Content ./kubernetes/resource.yaml) -replace '\{ID\}', $id | Set-Content ./kubernetes/resource_newid.yaml
         shell: powershell
 
+        # Run the file with the new content. 
       - name: Create a kubernetes pod
         shell: powershell
         run: |
