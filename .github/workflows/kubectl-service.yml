@@ -16,14 +16,6 @@ jobs:
       - name: look at the github repo
         uses: actions/checkout@v2
 
-      - name: print current working directory
-        shell: powershell
-        run: |
-            Write-Host "Current directory:"
-            pwd
-            Write-Host "Files in directory:"
-            Get-ChildItem -Recurse -Directory
-
       - name: Set up kubeconfig
         shell: powershell
         run: |
@@ -36,23 +28,11 @@ jobs:
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             kubectl --kubeconfig=$kubeconfigPath cluster-info
 
-      - name: Check versions
-        shell: powershell
-        run: |
-            $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
-            kubectl --kubeconfig=$kubeconfigPath version
-
       - name: Test cluster access
         shell: powershell
         run: |
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             kubectl --kubeconfig="$Env:USERPROFILE\kubeconfig" get pods -A --namespace howest-github-actions
-
-      - name:  Check namespaces
-        shell: powershell
-        run: |
-            $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
-            kubectl --kubeconfig="$Env:USERPROFILE\kubeconfig" get ns
 
       - name: Create a kubernetes pod
         shell: powershell
