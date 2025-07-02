@@ -33,4 +33,11 @@ jobs:
             $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
             kubectl --kubeconfig=$kubeconfigPath apply -f ./kubernetes/service.yaml
 
+      - name: redeployment
+        shell: powershell
+        run: |
+            $kubeconfigPath = "$Env:USERPROFILE\kubeconfig"
+            kubectl --kubeconfig=$kubeconfigPath rollout restart deployment hello-world-deployment  -n howest-github-actions
+
+
     
