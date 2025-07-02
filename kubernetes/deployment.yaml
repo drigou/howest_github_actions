@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: rancher/hello-world
+        image: rancher/hello-world:latest
         ports:
         - containerPort: 80
