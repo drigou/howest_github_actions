@@ -4,6 +4,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+
+
 jobs:
   check_azure_version:
     runs-on: ubuntu-latest
@@ -14,6 +16,6 @@ jobs:
           azcliversion: 2.64.0
           inlineScript: |
             az extension add --name ml
-            az configure --defaults group=$GROUP workspace=$WORKSPACE location=$LOCATION
+            az configure --defaults group=HAC9909-MasterclassDeployingAISolutions workspace=dries-gouwy-ml location=westeurope
             az ml compute list
 
