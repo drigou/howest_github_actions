@@ -21,6 +21,6 @@ jobs:
           azcliversion: 2.64.0
           inlineScript: |
             az extension add --name ml
-            az configure --defaults group=HAC9909-MasterclassDeployingAISolutions workspace=dries-gouwy-ml location=westeurope
+            az configure --defaults group=${{ secrets.AZURE_RESOURCEGROUP }} workspace=${{ secrets.AZURE_WORKSPACE }} location=${{ secrets.AZURE_LOCATION }}
             az ml compute list
 
